@@ -16,9 +16,6 @@ import gregtech.common.items.behaviors.ToggleEnergyConsumerBehavior;
 import gregtech.common.metatileentities.multi.electric.centralmonitor.MetaTileEntityCentralMonitor;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityZombie;
