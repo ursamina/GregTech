@@ -37,12 +37,10 @@ import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.IItemHandlerModifiable;
 
 import com.cleanroommc.modularui.utils.FluidTankHandler;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.function.Function;
@@ -250,7 +248,8 @@ public class MetaTileEntityDistillationTower extends RecipeMapMultiblockControll
         @Override
         protected boolean checkOutputSpaceFluids(@NotNull Recipe recipe, @NotNull IMultipleTankHandler exportFluids) {
             // Perform layer-wise fluid checks
-            if (!metaTileEntity.canVoidRecipeFluidOutputs() && !this.applyFluidToOutputs(recipe.getAllFluidOutputs(), false)) {
+            if (!metaTileEntity.canVoidRecipeFluidOutputs() &&
+                    !this.applyFluidToOutputs(recipe.getAllFluidOutputs(), false)) {
                 this.isOutputsFull = true;
                 return false;
             }
