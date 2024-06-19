@@ -42,6 +42,7 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 import com.cleanroommc.modularui.utils.FluidTankHandler;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.function.Function;
@@ -247,40 +248,13 @@ public class MetaTileEntityDistillationTower extends RecipeMapMultiblockControll
         }
 
         @Override
-        protected boolean setupAndConsumeRecipeInputs(@NotNull Recipe recipe,
-                                                      @NotNull IItemHandlerModifiable importInventory,
-                                                      @NotNull IMultipleTankHandler importFluids) {
-            this.overclockResults = calculateOverclock(recipe);
-
-            modifyOverclockPost(overclockResults, recipe.getRecipePropertyStorage());
-
-            if (!hasEnoughPower(overclockResults)) {
-                return false;
-            }
-
-            IItemHandlerModifiable exportInventory = getOutputInventory();
-
-            // We have already trimmed outputs and chanced outputs at this time
-            // Attempt to merge all outputs + chanced outputs into the output bus, to prevent voiding chanced outputs
-            if (!metaTileEntity.canVoidRecipeItemOutputs() &&
-                    !GTTransferUtils.addItemsToItemHandler(exportInventory, true, recipe.getAllItemOutputs())) {
+        protected boolean checkOutputSpaceFluids(@NotNull Recipe recipe, @NotNull IMultipleTankHandler exportFluids) {
+            // Perform layer-wise fluid checks
+            if (!metaTileEntity.canVoidRecipeFluidOutputs() && !this.applyFluidToOutputs(recipe.getAllFluidOutputs(), false)) {
                 this.isOutputsFull = true;
                 return false;
             }
-
-            // Perform layerwise fluid checks
-            if (!metaTileEntity.canVoidRecipeFluidOutputs() &&
-                    !this.applyFluidToOutputs(recipe.getAllFluidOutputs(), false)) {
-                this.isOutputsFull = true;
-                return false;
-            }
-
-            this.isOutputsFull = false;
-            if (recipe.matches(true, importInventory, importFluids)) {
-                this.metaTileEntity.addNotifiedInput(importInventory);
-                return true;
-            }
-            return false;
+            return true;
         }
     }
 }
