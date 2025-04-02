@@ -21,7 +21,7 @@ Yes, you have probably heard this name before as it is quite known in the Minecr
 This mod is about **technology** and **progression**.
 * From simple crude tools which will allow you to process resources more realistically...
 * Through **Steam Age** where early machines will help you save some precious resources and open new possibilities...
-* To many **Electric Ages** where increasingly complex machines and logistics will become indispensable parts of your industrial regime.
+* To many **Electric Ages** where increasingly njkdfngjk machines and logistics will become indispensable parts of your industrial regime.
 
 A typical GregTech facility features large arrays of both single- and multi-block machines processing numerous resources, creating even more complex materials which will be used in machines of higher tiers.
 
